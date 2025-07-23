@@ -1,0 +1,50 @@
+.container {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    .download-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding: 10px 20px;
+        border-radius: 12px;
+
+        h3 {
+            text-align: center;
+        }
+
+        .button-holder {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+
+            .download-button {
+                padding: 12px 24px;
+                height: 50px;
+                font-size: 16px;
+                color: #000;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            #download-low {
+                background-color: rgb(239, 71, 111)
+            }
+
+            #download-mid {
+                background-color: rgb(255, 209, 102);
+            }
+
+            #download-high {
+                background-color: rgb(6, 214, 160);
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
         });
     }
     if (message.action === "deleteTab") {
-        chrome.tabs.remove(sender.tab.id)
+        chrome.tabs.remove(sender.tab.id);
     }
 })
 
@@ -33,15 +33,19 @@ async function checkDownloads() {
     });
 }
 
-chrome.downloads.onChanged.addListener(async (delta) => {
-    let downloadData = (await chrome.downloads.search({id: delta.id}))[0];
-    if (downloadData.state === "in_progress" && downloadData.referrer.includes("kwik.si")) {
-        let origin = (await chrome.tabs.query({url: downloadData.referrer}))[0];
-        if (origin) {
-            chrome.tabs.remove(origin.id);
+chrome.downloads.onCreated.addListener(async (delta) => {
+        let downloadData = (await chrome.downloads.search({id: delta.id}))[0];
+        if (downloadData.referrer.includes("kwik.si")) {
+            let origin = (await chrome.tabs.query({url: downloadData.referrer}))[0];
+            if (origin) {
+                chrome.tabs.remove(origin.id);
+            }
         }
     }
-    if (downloadData.state === "complete") {
+)
+
+chrome.downloads.onChanged.addListener((delta) => {
+    if (delta.state.current === "complete") {
         console.log("Checking downloads because one ended");
         checkDownloads();
     }

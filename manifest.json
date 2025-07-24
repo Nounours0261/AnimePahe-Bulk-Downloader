@@ -1,11 +1,10 @@
 {
   "manifest_version": 3,
   "name": "AnimePahe Bulk Downloader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Download entire anime seasons from AnimePahe !",
   "permissions": [
     "downloads",
-    "downloads.shelf",
     "tabs",
     "scripting",
     "webNavigation",
@@ -17,6 +16,9 @@
     "https://i.animepahe.ru/*"
   ],
   "background": {
+    "scripts": [
+      "src/background.js"
+    ],
     "service_worker": "src/background.js"
   },
   "content_scripts": [
@@ -64,5 +66,11 @@
   },
   "action": {
     "default_title": "Check downloads"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "animepahe-bulk-downloader@nounours0261",
+      "strict_min_version": "109.0"
+    }
   }
 }

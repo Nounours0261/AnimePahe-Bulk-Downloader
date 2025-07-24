@@ -1,8 +1,12 @@
 async function homeStartDL(res) {
+    let titleElement = document.querySelector("h2.japanese");
+    if (titleElement === null) {
+        titleElement = document.querySelector("h1.user-select-none");
+    }
     chrome.runtime.sendMessage({
         action: "downloadImage",
         url: document.querySelector(".poster-wrapper .anime-poster a").href,
-        filename: document.querySelector("h2.japanese").textContent.replace(/[^a-zA-Z0-9-.,()_]+/g, "_")
+        filename: titleElement.textContent.replace(/[^a-zA-Z0-9-.,()_]+/g, "_")
     });
 
     let isAsc = document.querySelector(".btn.btn-dark.btn-sm.active").innerText.includes("asc");

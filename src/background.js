@@ -45,7 +45,7 @@ chrome.downloads.onCreated.addListener(async (delta) => {
 )
 
 chrome.downloads.onChanged.addListener((delta) => {
-    if (delta.state.current === "complete") {
+    if (delta.state && delta.state.current === "complete") {
         console.log("Checking downloads because one ended");
         checkDownloads();
     }

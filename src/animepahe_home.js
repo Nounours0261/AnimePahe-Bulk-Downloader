@@ -17,9 +17,12 @@ async function homeStartDL(res) {
     });
 }
 
-const container = document.createElement("div");
-container.className = `container`;
-container.innerHTML = `
+
+let animeContent = document.querySelector(".anime-content");
+if (animeContent !== null) {
+    const container = document.createElement("div");
+    container.className = `container`;
+    container.innerHTML = `
     <div class="download-wrapper">
         <h3>Download</h3>
         <div class="button-holder">
@@ -29,15 +32,15 @@ container.innerHTML = `
         </div>
     </div>`;
 
-container.querySelector("#download-low").addEventListener("click", () => {
-    homeStartDL("360p");
-});
-container.querySelector("#download-mid").addEventListener("click", () => {
-    homeStartDL("720p");
-});
-container.querySelector("#download-high").addEventListener("click", () => {
-    homeStartDL("1080p");
-});
+    container.querySelector("#download-low").addEventListener("click", () => {
+        homeStartDL("360p");
+    });
+    container.querySelector("#download-mid").addEventListener("click", () => {
+        homeStartDL("720p");
+    });
+    container.querySelector("#download-high").addEventListener("click", () => {
+        homeStartDL("1080p");
+    });
 
-let animeContent = document.querySelector(".anime-content");
-animeContent.appendChild(container);
+    animeContent.appendChild(container);
+}

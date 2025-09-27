@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AnimePahe Bulk Downloader",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Download entire anime seasons from AnimePahe !",
   "permissions": [
     "downloads",
@@ -11,9 +11,9 @@
     "alarms"
   ],
   "host_permissions": [
-    "https://animepahe.ru/*",
+    "https://animepahe.si/*",
     "https://kwik.si/*",
-    "https://i.animepahe.ru/*"
+    "https://i.animepahe.si/*"
   ],
   "background": {
     "scripts": [
@@ -24,7 +24,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://animepahe.ru/anime/*"
+        "https://animepahe.si/anime/*"
       ],
       "js": [
         "src/animepahe_home.js"
@@ -35,7 +35,7 @@
     },
     {
       "matches": [
-        "https://animepahe.ru/play/*"
+        "https://animepahe.si/play/*"
       ],
       "js": [
         "src/animepahe_episode.js"

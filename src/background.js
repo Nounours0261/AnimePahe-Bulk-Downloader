@@ -35,7 +35,7 @@ async function checkDownloads() {
 
 chrome.downloads.onCreated.addListener(async (delta) => {
         let downloadData = (await chrome.downloads.search({id: delta.id}))[0];
-        if (downloadData.referrer.includes("kwik.si")) {
+        if (downloadData.referrer.includes("kwik.cx")) {
             let origin = (await chrome.tabs.query({url: downloadData.referrer}))[0];
             if (origin) {
                 chrome.tabs.remove(origin.id);
@@ -52,9 +52,9 @@ chrome.downloads.onChanged.addListener((delta) => {
 });
 
 chrome.webNavigation.onCompleted.addListener(() => {
-    console.log("Checking downloads because navigation happened to kwik.si");
+    console.log("Checking downloads because navigation happened to kwik.cx");
     setTimeout(checkDownloads, 3000);
-}, {url: [{hostContains: 'kwik.si'}]});
+}, {url: [{hostContains: 'kwik.cx'}]});
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.alarms.create('justInCaseAPBD', {periodInMinutes: 5});

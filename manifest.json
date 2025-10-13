@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AnimePahe Bulk Downloader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Download entire anime seasons from AnimePahe !",
   "permissions": [
     "downloads",
@@ -12,7 +12,7 @@
   ],
   "host_permissions": [
     "https://animepahe.si/*",
-    "https://kwik.si/*",
+    "https://kwik.cx/*",
     "https://i.animepahe.si/*"
   ],
   "background": {
@@ -51,7 +51,7 @@
     },
     {
       "matches": [
-        "https://kwik.si/*"
+        "https://kwik.cx/*"
       ],
       "js": [
         "src/kwik.js"

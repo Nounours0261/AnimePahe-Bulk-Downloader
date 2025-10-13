@@ -1,7 +1,7 @@
 async function startPaheWin() {
     let button = document.querySelector(".redirect");
     let observer = new MutationObserver(() => {
-        if (button.href.includes("kwik.si")) {
+        if (button.href.includes("kwik.cx")) {
             observer.disconnect();
             button.click();
         }

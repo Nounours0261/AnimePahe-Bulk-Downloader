@@ -1,9 +1,4 @@
 chrome.runtime.onMessage.addListener(async (message, sender) => {
-    if (message.action === "downloadImage") {
-        chrome.downloads.download({
-            url: message.url, filename: `${message.filename}.${new URL(message.url).pathname.split(".").slice(-1)}`
-        })
-    }
     if (message.action === "openTab") {
         await chrome.tabs.create({
             url: message.url, active: false
@@ -42,7 +37,19 @@ chrome.downloads.onCreated.addListener(async (delta) => {
             }
         }
     }
-)
+);
+
+chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
+    const match = item.filename.match(/AnimePahe_(.*?)_-_(\d+).*\.mp4/);
+    if (match)
+    {
+        const animeName = match[1];
+        const epNb = match[2];
+        const newName = `${animeName}/${animeName}_${epNb}.mp4`;
+
+        suggest({filename: newName, conflictAction: "overwrite"});
+    }
+});
 
 chrome.downloads.onChanged.addListener((delta) => {
     if (delta.state && delta.state.current === "complete") {
